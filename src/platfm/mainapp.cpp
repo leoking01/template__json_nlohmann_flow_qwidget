@@ -3,17 +3,10 @@
 #pragma execution_character_set("utf-8")
 
 
-//MainApp   theMainApp;
-
-
-//MainApp*  get_the_main_app()
-//{
-//    return  & theMainApp ;
-//}
 MainApp *MainApp::instance = NULL;
 
 MainApp::MainApp() {
-
+  flowData = new  std::map<int, ToolBase *> ();
 }
 
 const int nums_of_tools = 3;

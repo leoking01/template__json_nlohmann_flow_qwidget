@@ -1,4 +1,4 @@
-﻿#ifndef MAINAPP_H
+#ifndef MAINAPP_H
 #define MAINAPP_H
 
 #include <stdio.h>
@@ -448,8 +448,8 @@ public:
             (pt)->className = this->className;
             (pt)->actualName = this->soleName;
         } else {
-            std::cout << "gennerate  tool failure. " << std::endl;
-            //            return  NULL;
+//            std::cout << "gennerate  tool failure. " << std::endl;
+            //   return  NULL;
         }
 
         if (!pt) {
@@ -574,7 +574,7 @@ private:
 
 class MainApp {
 public:
-    //    MainApp();
+
 private:
     MainApp();
 
@@ -587,9 +587,10 @@ public:
 private:
     static MainApp *instance;
 public:
-    bool addToolItem_from_ui(int order, std::string tool_name,
-                             std::string str_time, std::string &soleName
-                             ) {
+    bool addToolItem_from_ui(
+            int order, std::string tool_name,
+            std::string str_time, std::string &soleName
+            ) {
         //        absTool->actualName = std::to_string(order );
         //        absTool->order = order  ;
         //        absTool->id = order  ;
@@ -600,7 +601,16 @@ public:
         ToolBase *absTool = fac.generate_by_toolName();
         if (!absTool) return false;
         soleName = fac.soleName;
-        flowData.insert(std::pair<int, ToolBase *>(order, absTool));
+        if( 0 )
+        {
+            flowData->insert(std::pair<int, ToolBase *>(order, absTool));
+        (*flowData)[order] =  absTool ;
+        }
+
+
+          std::map<int, ToolBase *> *  pp = new  std::map<int, ToolBase *>();
+pp->insert(std::pair<int, ToolBase *>(order, absTool));
+
         return true;
     }
 
@@ -615,13 +625,11 @@ public:
         //fac.str_time = str_time;
         ToolBase *absTool = fac.generate_by_soleName();
         if (!absTool) return false;
-        flowData.insert(std::pair<int, ToolBase *>(fac.order, absTool));
+        flowData->insert(std::pair<int, ToolBase *>(fac.order, absTool));
         return true;
     }
-
-
 private:
-    std::map<int, ToolBase *> flowData;
+    std::map<int, ToolBase *> * flowData;
     //
 public:
 #if 0
@@ -647,10 +655,10 @@ public:
 
     void to_json(nlohmann::json &j) {
         std::cout << "_______________________to_json__________________________" << std::endl;
-        std::cout << "this->flowData.size() = " << this->flowData.size() << std::endl;//'\n';
-        if (this->flowData.size() <= 0)return;
-        for (std::map<int, ToolBase *>::iterator it = flowData.begin();
-             it != flowData.end(); it++) {
+        std::cout << "this->flowData.size() = " << this->flowData->size() << std::endl;//'\n';
+        if (this->flowData->size() <= 0)return;
+        for (std::map<int, ToolBase *>::iterator it = flowData->begin();
+             it != flowData->end(); it++) {
             nlohmann::json j_tmp;
             (it->second)->to_json(j_tmp); //(ToolSource*)
             j.push_back(j_tmp);
@@ -669,7 +677,7 @@ public:
         if (j.size() <= 0)
             return false;
 
-        this->flowData.clear();
+        this->flowData->clear();
         for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
             std::cout << "*it = " << *it << std::endl;//'\n';
 

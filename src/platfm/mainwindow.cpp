@@ -6,9 +6,9 @@
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow) {
-    std::cout << "    __________________________________________________________________" << std::endl;
-    std::cout << "    |                                                                 |" << std::endl;
-    std::cout << "_____                   MainWindow():  init  start              _____" << std::endl;
+    std::cout << "     __________ ___________________________________________" << std::endl;
+    std::cout << "    |                                                      |" << std::endl;
+    std::cout << "_____               MainWindow():  init  start              _____" << std::endl;
     ui->setupUi(this);
     //icon
     setWindowIcon(QIcon(":/resourceMy/logo.ico")); //为窗口标题添加图片，注意要路径要添加 ": "
@@ -23,9 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->ui->listWidget_2, &QListWidget::doubleClicked, this, &MainWindow::slot_popEditToolItem);
     connect(this->ui->listWidget, &QListWidget::doubleClicked, this, &MainWindow::slot_doubleAddToolItem);
     //--------------------------------------------------------------------------
-    std::cout << "____                         MainWindow():  init  finish.                        ____" << std::endl;
-    std::cout << "    |                                                                            |" << std::endl;
-    std::cout << "    -----------------------------------------------------------------------------\n\n" << std::endl;
+    std::cout << "____                    MainWindow():  init  finish.               ____" << std::endl;
+    std::cout << "    |                                                            |" << std::endl;
+    std::cout << "    ---------------------- -------------------------------------\n\n" << std::endl;
 }
 
 MainWindow::~MainWindow() {
@@ -475,7 +475,7 @@ void MainWindow::addToolProc_from_ui() {
         return;
     } else {
         printLogToTextBox_q((QString("you have selected tool id: 已经选中工具: id: ") + QString::number(id) +
-        " : " + curIt));
+                             " : " + curIt));
     }
 #if 0
     //这句话 用 rapidjson写到文件中去。
@@ -507,8 +507,8 @@ void MainWindow::addToolProc_from_ui() {
     //   ToolBase *absTool  = fac->generate_by_toolName();// toolItemName,nums, timeIdStr,  soleName  ) ;
     //----- ------添加到流程---- ----------
     std::string soleName;
-    bool res_insert = this->mp_flowApp->addToolItem_from_ui(nums,
-                                                            toolItemName, timeIdStr, soleName);
+    bool res_insert = true ;
+    this->mp_flowApp->addToolItem_from_ui(nums, toolItemName, timeIdStr, soleName);
     if (res_insert) {
         //添加到流程表
         if( 0 )
@@ -531,57 +531,65 @@ void MainWindow::slot_doubleAddToolItem() {
 
 //---------------------------------------------------------------------
 void MainWindow::on_actionloadData_triggered() {
-    // m_jsonfile = "D:\\AwsOneDriver\\note_light\\light_json_nlohmann_qt\\src/test.json";
-    //    load_json( m_json  ,m_jsonfile ) ;
-    std::string readFile = "../../src/out.json";
-    printLogToTextBox_q("load from readFile: " + QString::fromStdString(readFile));
-    this->m_json.clear();
-    load_json(this->m_json, readFile);
-    //return  ;
-    //this->mp_flowApp->m
-    //update app
-    bool res = this->mp_flowApp->from_json(this->m_json);
-    if (!res) {
-        std::cout << "unserialization  falure.  " << std::endl;//'\n';
+    try {
+        // m_jsonfile = "D:\\AwsOneDriver\\note_light\\light_json_nlohmann_qt\\src/test.json";
+        //    load_json( m_json  ,m_jsonfile ) ;
+        std::string readFile = ".src/out.json";
+        printLogToTextBox_q("load from readFile: " + QString::fromStdString(readFile));
         this->m_json.clear();
-    } else {
-        std::cout << "unserialization  success.  " << std::endl;//'\n';
-    }
-    this->ui->listWidget_2->clear();
-    for (nlohmann::json::iterator it = this->m_json.begin(); it != this->m_json.end(); ++it) {
-        std::cout << "*it = " << *it << std::endl;//'\n';
-        if( 0 )
-            this->ui->listWidget_2->addItem(
-                    QString::fromStdString((*it)["sole_name"]));
+        load_json(this->m_json, readFile);
+        //return  ;
+        //this->mp_flowApp->m
+        //update app
+        bool res = this->mp_flowApp->from_json(this->m_json);
+        if (!res) {
+            std::cout << "unserialization  falure.  " << std::endl;//'\n';
+            this->m_json.clear();
+        } else {
+            std::cout << "unserialization  success.  " << std::endl;//'\n';
+        }
+        this->ui->listWidget_2->clear();
+        for (nlohmann::json::iterator it = this->m_json.begin(); it != this->m_json.end(); ++it) {
+            std::cout << "*it = " << *it << std::endl;//'\n';
+            if( 0 )
+                this->ui->listWidget_2->addItem(
+                        QString::fromStdString((*it)["sole_name"]));
 
-        QListWidgetItem* lst5 = new QListWidgetItem(QIcon(":/images/printer.jpeg")
-                                                    , QString::fromStdString((*it)["sole_name"])
-                ,   this->ui->listWidget_2);
-        this->ui->listWidget_2->insertItem(1, lst5);
+            QListWidgetItem* lst5 = new QListWidgetItem(QIcon(":/images/printer.jpeg")
+                                                        , QString::fromStdString((*it)["sole_name"])
+                    ,   this->ui->listWidget_2);
+            this->ui->listWidget_2->insertItem(1, lst5);
+        }
+    }  catch (std::exception  ex) {
+        std::cout << "unserialization  falure.  " << ex.what()<< std::endl;//'\n';
     }
 }
 
 void MainWindow::on_actionSaveData_triggered() {
-    std::string savefile = "../../src/out.json";
-    //    save_json( m_json  ,m_jsonfile ) ;
-    this->m_json = {};
-    nlohmann::json *js = new nlohmann::json();
-    //    this->mp_flowApp->to_json( js  );return ;
-    this->mp_flowApp->to_json(this->m_json);//return ;
-    std::cout << "this->m_json  = " << this->m_json << std::endl;
-    //    return ;
+    try {
+        std::string savefile = "./out.json";
+        //    save_json( m_json  ,m_jsonfile ) ;
+        this->m_json = {};
+        nlohmann::json *js = new nlohmann::json();
+        //    this->mp_flowApp->to_json( js  );return ;
+        this->mp_flowApp->to_json(this->m_json);//return ;
+        std::cout << "this->m_json  = " << this->m_json << std::endl;
+        //    return ;
 #if 1
-    if (this->m_json.size() < 0) {
-        printLogToTextBox_q("data is null. ");
+        if (this->m_json.size() < 0) {
+            printLogToTextBox_q("data is null. ");
+            return;
+        }
+        save_json(this->m_json, savefile);
+        printLogToTextBox_q("save to savefile : " + QString::fromStdString(savefile));
         return;
-    }
-    save_json(this->m_json, savefile);
-    printLogToTextBox_q("save to savefile : " + QString::fromStdString(savefile));
-    return;
-    //    // write prettified JSON to another file
-    //    std::ofstream o(savefile);
-    //    o << std::setw(4) << this->m_json << std::endl;
+        //    // write prettified JSON to another file
+        //    std::ofstream o(savefile);
+        //    o << std::setw(4) << this->m_json << std::endl;
 #endif
+    }  catch (std::exception  ex) {
+        std::cout << "unserialization  falure.  " << ex.what()<< std::endl;//'\n';
+    }
 }
 //-------------------------------------------------------------------------
 void MainWindow::on_actionaddTool_triggered() {
@@ -604,6 +612,11 @@ void MainWindow::on_pushButton_saveImageXml_clicked()
 {
     on_actionsaveImageXml_triggered ();
 }
+
+
+
+
+
 
 void MainWindow::on_pushButton_loadData_clicked()
 {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.1, 2021-06-27T20:42:48. -->
+<!-- Written by QtCreator 4.13.1, 2021-06-27T23:57:35. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -105,6 +105,7 @@
       <value type="QString" key="CMakeProjectManager.MakeStep.AdditionalArguments"></value>
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
        <value type="QString">all</value>
+       <value type="QString">install</value>
       </valuelist>
       <value type="QString" key="CMakeProjectManager.MakeStep.CMakeArguments"></value>
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -364,7 +365,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/alex/topics__private/template__json_nlohmann_flow_qwidget/build-src-Desktop_Qt_5_12_10_GCC_64bit-Debug/bin</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/alex/topics__private/template__json_nlohmann_flow_qwidget/bin</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
