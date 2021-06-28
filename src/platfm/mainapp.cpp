@@ -7,6 +7,7 @@ MainApp *MainApp::instance = NULL;
 
 MainApp::MainApp() {
   flowData = new  std::map<int, ToolBase *> ();
+  flowData->clear();
 }
 
 const int nums_of_tools = 3;

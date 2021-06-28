@@ -82,6 +82,8 @@ private slots:
 
     void on_pushButton_SaveData_clicked();
 
+    void on_pushButton_runFlow_clicked();
+
 private:
     ////唯一的一个QT 图像
     QImage m_img;

@@ -309,7 +309,6 @@ std::vector<std::string> split_std_string(const std::string &s, std::vector<std:
 //  设计名字：   order,日期时间，name,
 class ToolFactory {
 public:
-
     std::string soleName;
     int order;
 
@@ -319,7 +318,6 @@ public:
     std::string className;
 
 public:
-
     ToolBase *generate_by_soleName() {
         ToolBase *pt = NULL;
         std::cout << "generate_by_soleName: soleName: " << soleName << std::endl;
@@ -328,7 +326,6 @@ public:
         std::cout << "soleName.compare(toolNameset[0] =  " << soleName.find(toolNameset[0]) << std::endl;
 
         //IsContainerPartition
-
         if (soleName.find(toolNameset[0]) >= 0) {
             pt = new ToolSource();
             std::vector<std::string> res;
@@ -394,9 +391,7 @@ public:
         return pt;
     }
 
-
     //==============================================
-
     std::string make_soleName() {
         return std::to_string(order) + "," +
                 str_time + "," +
@@ -448,126 +443,18 @@ public:
             (pt)->className = this->className;
             (pt)->actualName = this->soleName;
         } else {
-//            std::cout << "gennerate  tool failure. " << std::endl;
+            //  std::cout << "gennerate  tool failure. " << std::endl;
             //   return  NULL;
         }
 
         if (!pt) {
-            std::cout << "gennerate  tool failure. " << std::endl; //return  false;
+    std::cout << "gennerate  tool failure. " << std::endl; //return  false;
         } else {
-            std::cout << "gennerate  tool sucess. " << std::endl; //return  false;
+  std::cout << "gennerate  tool sucess. " << std::endl; //return  false;
         }
         return pt;
     }
 
-
-    //ToolBase* generate(
-    //    std::string  soleNameOrToolName,
-    //    int  order,
-    //    std::string  str_time,
-    //    std::string   ToolName
-    //    )
-    //{
-    //	ToolBase* pt = NULL;
-    //	if (soleNameOrToolName.compare(toolNameset[0]) >= 0)
-    //	{
-    //		pt = new  ToolSource();
-    //		if (order >= 0)
-    //			((ToolSource*)pt)->order = order;
-    //		std::vector<std::string> res;
-    //		split_std_string(soleNameOrToolName, res, ',');
-    //		//读取
-    //		if (res.size() >= 3) {
-    //			//          std:: res[0]
-    //			int  idx = std::stoi(res[0]);
-    //			order = idx;
-    //			((ToolSource*)pt)->order = order = idx;
-    //			((ToolSource*)pt)->className = "ToolSource";
-    //			(pt)->toolName = res[3];
-    //			str_time = res[1];
-    //			soleName = soleNameOrToolName;
-    //			((ToolSource*)pt)->sole_name = soleNameOrToolName;
-    //			(pt)->actualName = soleNameOrToolName;
-    //		}
-    //		//  ui 添加
-    //		else
-    //		{
-    //			((ToolSource*)pt)->order = order;
-    //			((ToolSource*)pt)->toolName = soleNameOrToolName;
-    //			((ToolSource*)pt)->className = "ToolSource";
-    //			soleName = std::to_string(order) + ","
-    //				+ str_time + "," + "ToolSource" + "," + soleNameOrToolName;
-    //			((ToolSource*)pt)->sole_name = soleName;
-    //			(pt)->actualName = soleName;
-    //			// soleName =  soleNameOrToolName ;
-    //		}
-    //	}
-    //	else if (soleNameOrToolName.compare(toolNameset[1]) >= 0)
-    //	{
-    //		pt = new  ToolSaveFile();
-    //		//            pt = new  ToolSource();
-    //		if (order >= 0)
-    //			(pt)->order = order;
-    //		std::vector<std::string> res;
-    //		split_std_string(soleNameOrToolName, res, ',');
-    //		if (res.size() >= 3) {
-    //			//          std:: res[0]
-    //			int  idx = std::stoi(res[0]);
-    //			(pt)->order = order = idx;
-    //			(pt)->className = "ToolSaveFile";
-    //			(pt)->toolName = res[3];
-    //			(pt)->sole_name = soleNameOrToolName;
-    //		}
-    //		else
-    //		{
-    //			(pt)->order = order;
-    //			(pt)->toolName = soleNameOrToolName;
-    //			(pt)->className = "ToolSaveFile";
-    //			(pt)->sole_name = std::to_string(order) + ","
-    //				+ str_time + "," + "ToolSaveFile" + "," + soleNameOrToolName;
-    //		}
-    //	}
-    //	else if (soleNameOrToolName.compare(toolNameset[2]) >= 0)
-    //	{
-    //		pt = new  ToolBlur();
-    //		//            pt = new  ToolSource();
-    //		if (order >= 0)
-    //			((ToolBlur*)pt)->order = order;
-    //		std::vector<std::string> res;
-    //		split_std_string(soleNameOrToolName, res, ',');
-    //		if (res.size() >= 3) {
-    //			//          std:: res[0]
-    //			int  idx = std::stoi(res[0]);
-    //			((ToolBlur*)pt)->order = order = idx;
-    //			((ToolBlur*)pt)->className = "ToolBlur";
-    //			((ToolBlur*)pt)->toolName = res[3];
-    //			((ToolBlur*)pt)->sole_name = soleNameOrToolName;
-    //		}
-    //		else
-    //		{
-    //			((ToolBlur*)pt)->order = order;
-    //			((ToolBlur*)pt)->toolName = soleNameOrToolName;
-    //			((ToolBlur*)pt)->className = "ToolBlur";
-    //			((ToolBlur*)pt)->sole_name = std::to_string(order) + ","
-    //				+ str_time + "," + "ToolBlur" + "," + soleNameOrToolName;
-    //		}
-    //	}
-    //	else {
-    //		//            className = "";
-    //	}
-
-    //	if (!pt)
-    //	{
-    //		std::cout << "gennerate  tool failure. " << std::endl; //return  false;
-    //	}
-    //	else
-    //	{
-    //		std::cout << "gennerate  tool sucess. " << std::endl; //return  false;
-    //	}
-
-
-    //	return  pt;
-    //}
 private:
 };
 
@@ -591,9 +478,6 @@ public:
             int order, std::string tool_name,
             std::string str_time, std::string &soleName
             ) {
-        //        absTool->actualName = std::to_string(order );
-        //        absTool->order = order  ;
-        //        absTool->id = order  ;
         ToolFactory fac;
         fac.order = order;
         fac.ToolName = tool_name;
@@ -601,24 +485,22 @@ public:
         ToolBase *absTool = fac.generate_by_toolName();
         if (!absTool) return false;
         soleName = fac.soleName;
+
         if( 0 )
         {
             flowData->insert(std::pair<int, ToolBase *>(order, absTool));
-        (*flowData)[order] =  absTool ;
+            if( 0 )
+                (*flowData)[order] =  absTool ;
         }
 
-
-          std::map<int, ToolBase *> *  pp = new  std::map<int, ToolBase *>();
-pp->insert(std::pair<int, ToolBase *>(order, absTool));
+        std::map<int, ToolBase *> *  pp = new  std::map<int, ToolBase *>();
+        pp->insert(std::pair<int, ToolBase *>(order, absTool));
 
         return true;
     }
 
 
     bool addToolItem_from_json(std::string &soleName) {
-        //        absTool->actualName = std::to_string(order );
-        //        absTool->order = order  ;
-        //        absTool->id = order  ;
         ToolFactory fac;
         fac.soleName = soleName;
         //fac.ToolName = tool_name;
@@ -654,9 +536,10 @@ public:
 #endif
 
     void to_json(nlohmann::json &j) {
-        std::cout << "_______________________to_json__________________________" << std::endl;
-        std::cout << "this->flowData.size() = " << this->flowData->size() << std::endl;//'\n';
-        if (this->flowData->size() <= 0)return;
+        std::cout << "________________to_json______________" << std::endl;
+        std::cout << "this->flowData.size() = " << (*this->flowData).size() << std::endl;//'\n';
+        //         return;
+        if ((*this->flowData).size() <= 0)return;
         for (std::map<int, ToolBase *>::iterator it = flowData->begin();
              it != flowData->end(); it++) {
             nlohmann::json j_tmp;

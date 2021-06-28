@@ -6,9 +6,9 @@
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow) {
-    std::cout << "     __________ ___________________________________________" << std::endl;
-    std::cout << "    |                                                      |" << std::endl;
-    std::cout << "_____               MainWindow():  init  start              _____" << std::endl;
+    std::cout << "  ___________________" << std::endl;
+    std::cout << " |                          |" << std::endl;
+    std::cout << "__   MainWindow():  init  start ___" << std::endl;
     ui->setupUi(this);
     //icon
     setWindowIcon(QIcon(":/resourceMy/logo.ico")); //为窗口标题添加图片，注意要路径要添加 ": "
@@ -17,22 +17,22 @@ MainWindow::MainWindow(QWidget *parent) :
     m_DirSave = "d:/";
     //    mp_flowApp = new MainApp();
     mp_flowApp = MainApp::getInstance(); // & theMainApp;
-    //=============================================== slots ====================================================================
-    //  ------------------------------------   控件们 -------------------------------
+    //=============== slots ===================
+    //  ---------------   控件们 --------------------
     connect(this->ui->textBrowser, &QTextBrowser::textChanged, this, &MainWindow::textBrow_01_changed);
     connect(this->ui->listWidget_2, &QListWidget::doubleClicked, this, &MainWindow::slot_popEditToolItem);
     connect(this->ui->listWidget, &QListWidget::doubleClicked, this, &MainWindow::slot_doubleAddToolItem);
     //--------------------------------------------------------------------------
-    std::cout << "____                    MainWindow():  init  finish.               ____" << std::endl;
-    std::cout << "    |                                                            |" << std::endl;
-    std::cout << "    ---------------------- -------------------------------------\n\n" << std::endl;
+    std::cout << "____         MainWindow():  init  finish.     ____" << std::endl;
+    std::cout << "    |                                      |" << std::endl;
+    std::cout << "    ------------------------------------\n\n" << std::endl;
 }
 
 MainWindow::~MainWindow() {
     delete ui;
 }
 
-//---------------------事件函数的重载-------------------------------
+//---------------事件函数的重载-----------------
 void MainWindow::paintEvent(QPaintEvent *event) {
     if (0) {
         QPainter painter(this->ui->label);
@@ -116,10 +116,10 @@ void MainWindow::init_toolList() {
     }
 }
 
-//--------------------------------------------------------------------------------------
+//---------------------------------------------------------------
 void MainWindow::tool_selectFile(std::string title, const QString &p_filter, std::string nameFunc,
                                  std::string &fileNamefull, std::string &filePath, QString &qFileNameFull) {
-    printLogToTextBox_q("\n\n\n\n\n-------------------------------><--------------------------------");
+    printLogToTextBox_q("\n\n\n\n\n----------><-----------");
     //    QPushButton *btn = (QPushButton *) sender();  // 获取到了发送该信号按钮的指针
     //    this->printLogToTextBox(("you clicked button : " + btn->text()).toStdString());
     //    nameFunc = btn->text().toStdString();
@@ -158,7 +158,7 @@ void MainWindow::tool_selectFile(std::string title, const QString &p_filter, std
 
 void MainWindow::tool_selectFile_save_path(std::string title, const QString &p_filter, std::string nameFunc,
                                            std::string &fileNamefull, std::string &filePath, QString &qFileNameFull) {
-    printLogToTextBox_q("\n\n\n\n\n-------------------------------><--------------------------------");
+    printLogToTextBox_q("\n\n\n\n\n------------><-----------");
     //    QPushButton *btn = (QPushButton *) sender();  // 获取到了发送该信号按钮的指针
     //    this->printLogToTextBox(("you clicked button : " + btn->text()).toStdString());
     //    nameFunc = btn->text().toStdString();
@@ -262,27 +262,28 @@ void MainWindow::on_actionsaveImageXml_triggered() {
     std::string filePathFull;
     std::string filePath;
     QString qFileNameFull;
-    tool_selectFile_save_path(("select range iamge file."),
-                              tr("图片文件(*png);;"
-                                 "pcd文件(*jpg);;"
-                                 "pcd文件(*tiff);;"
-                                 "pcd文件(*tif);;"
-                                 "pcd文件(*pbm);;"
-                                 "pcd文件(*pgm);;"
-                                 "pcd文件(*exr);;"
-                                 "pcd文件(*jp2);;"
-                                 "pcd文件(*SR);;"
-                                 "pcd文件(*RAS);;"
-                                 "pcd文件(*dib);;"
-                                 "pcd文件(*bmp);;"
-                                 "pcd文件(*pcd);;"
-                                 "pcd文件(*ply);;"
-                                 "本本文件(*xml);;"
-                                 "本本文件(*csv);;"
-                                 "本本文件(*txt);;"
-                                 "pcd文件(*bin);;"
-                                 "allfileType(*)"),
-                              "path_rangeImage", filePathFull, filePath, qFileNameFull);
+    tool_selectFile_save_path(
+                ("select range iamge file."),
+                tr("图片文件(*png);;"
+                   "pcd文件(*jpg);;"
+                   "pcd文件(*tiff);;"
+                   "pcd文件(*tif);;"
+                   "pcd文件(*pbm);;"
+                   "pcd文件(*pgm);;"
+                   "pcd文件(*exr);;"
+                   "pcd文件(*jp2);;"
+                   "pcd文件(*SR);;"
+                   "pcd文件(*RAS);;"
+                   "pcd文件(*dib);;"
+                   "pcd文件(*bmp);;"
+                   "pcd文件(*pcd);;"
+                   "pcd文件(*ply);;"
+                   "本本文件(*xml);;"
+                   "本本文件(*csv);;"
+                   "本本文件(*txt);;"
+                   "pcd文件(*bin);;"
+                   "allfileType(*)"),
+                "path_rangeImage", filePathFull, filePath, qFileNameFull);
     if (filePathFull.empty())
         return;
     std::string post = get_post_fix(filePathFull);
@@ -376,7 +377,7 @@ void MainWindow::on_actionsaveImageXml_triggered() {
     return;
 
 #if 0
-    //----------------------------------------------------
+    //-------------------------
     std::string filePathFull;
     std::string filePath = m_DirSave;
     QString qFileNameFull;
@@ -419,7 +420,7 @@ void MainWindow::on_actionsaveImageXml_triggered() {
 #endif
 }
 
-//---------------------------------------------------------------------
+//-----------------------------------------
 void MainWindow::on_actionrun01_triggered() {
     this->printLogToTextBox_q(QString::fromUtf8("on_actionrun01_triggered: null ..."));
 }
@@ -437,7 +438,7 @@ void MainWindow::slot_popEditToolItem() {
 
     std::string actualName = curLine.toStdString();
     std::string toolName;// = actualName_to_toolName(actualName);
-    std::cout << "slot_popEditToolItem: actualName = " << actualName << "---------> -->"
+    std::cout << "slot_popEditToolItem: actualName = " << actualName << "----> -->"
               << std::endl;
 
     int id_tool = -1;// = actualName_to_idx__from_flow_list(actualName);
@@ -461,11 +462,14 @@ void MainWindow::slot_popEditToolItem() {
 }
 
 void MainWindow::addToolProc_from_ui() {
-    //    QPushButton *btn = (QPushButton *) sender();  // 获取到了发送该信号按钮的指针
-    //    this->printLogToTextBox_q("you clicked button : " + btn->text().toStdString());
+#if 0
+    QPushButton *btn = (QPushButton *) sender();  // 获取到了发送该信号按钮的指针
+    this->printLogToTextBox_q("you clicked button : " + btn->text().toStdString());
+#endif
     this->printLogToTextBox_q("slot__addToolItemToFlow");
     //选择工具名字
     int id = this->ui->listWidget->currentRow();
+    if(id<0 ||  id>  1.0e+5 ) return ;
     int nums = this->ui->listWidget_2->count();
     QString curIt = this->ui->listWidget->currentItem()->text();
     std::string toolItemName = curIt.toStdString();
@@ -487,25 +491,8 @@ void MainWindow::addToolProc_from_ui() {
     std::string pcdFileNameCur = qPcdFileNameCur.toStdString();
     printLogToTextBox("当前线框的pcdfile ： " + pcdFileNameCur);
 #endif
-    //    std::string str_insert;
-    //    str_insert = std::to_string(nums ) +"," +
-    //            getDatetimeStr_forID() + "," +
-    //            toolItemName;
-    //    this->printLogToTextBox_q(  "str_insert =  "+ QString::fromStdString( str_insert) );
-    // add  to  app data
-    //    std::map<std::string, std::string> tooldAta;
-    //    ToolBase *absTool = new ToolSource();//= gen_tool_by_actualName(str_insert);
-    //    if (!absTool) {
-    //        this->printLogToTextBox_q("can,t generate tool instance . please check. null tool.  return ; ");
-    //        return;
-    //    }
-    //   ToolFactory  *fac = new ToolFactory ();
-    //   //std::string  soleName ;
-    //   fac->order = nums;
-    //fac->ToolName = toolItemName ;
-    //fac->str_time = timeIdStr ;
-    //   ToolBase *absTool  = fac->generate_by_toolName();// toolItemName,nums, timeIdStr,  soleName  ) ;
-    //----- ------添加到流程---- ----------
+
+    //----- ------添加到流程----------
     std::string soleName;
     bool res_insert = true ;
     this->mp_flowApp->addToolItem_from_ui(nums, toolItemName, timeIdStr, soleName);
@@ -521,7 +508,7 @@ void MainWindow::addToolProc_from_ui() {
     //   delete  fac;
     return;
 }
-//-------------------------------------------------------------------------
+//-----------------------------------------------
 
 void MainWindow::slot_doubleAddToolItem() {
     addToolProc_from_ui();
@@ -529,7 +516,7 @@ void MainWindow::slot_doubleAddToolItem() {
 
 
 
-//---------------------------------------------------------------------
+//---------------------------------------
 void MainWindow::on_actionloadData_triggered() {
     try {
         // m_jsonfile = "D:\\AwsOneDriver\\note_light\\light_json_nlohmann_qt\\src/test.json";
@@ -571,7 +558,8 @@ void MainWindow::on_actionSaveData_triggered() {
         //    save_json( m_json  ,m_jsonfile ) ;
         this->m_json = {};
         nlohmann::json *js = new nlohmann::json();
-        //    this->mp_flowApp->to_json( js  );return ;
+        //    this->mp_flowApp->to_json( js  );
+//        return ;
         this->mp_flowApp->to_json(this->m_json);//return ;
         std::cout << "this->m_json  = " << this->m_json << std::endl;
         //    return ;
@@ -582,7 +570,7 @@ void MainWindow::on_actionSaveData_triggered() {
         }
         save_json(this->m_json, savefile);
         printLogToTextBox_q("save to savefile : " + QString::fromStdString(savefile));
-        return;
+//        return;
         //    // write prettified JSON to another file
         //    std::ofstream o(savefile);
         //    o << std::setw(4) << this->m_json << std::endl;
@@ -591,7 +579,8 @@ void MainWindow::on_actionSaveData_triggered() {
         std::cout << "unserialization  falure.  " << ex.what()<< std::endl;//'\n';
     }
 }
-//-------------------------------------------------------------------------
+
+//--------------------------------------------------
 void MainWindow::on_actionaddTool_triggered() {
     addToolProc_from_ui();
 }
@@ -616,8 +605,7 @@ void MainWindow::on_pushButton_saveImageXml_clicked()
 
 
 
-
-
+// load flow
 void MainWindow::on_pushButton_loadData_clicked()
 {
     on_actionloadData_triggered();
@@ -626,4 +614,10 @@ void MainWindow::on_pushButton_loadData_clicked()
 void MainWindow::on_pushButton_SaveData_clicked()
 {
     on_actionSaveData_triggered() ;
+}
+
+//run flow
+void MainWindow::on_pushButton_runFlow_clicked()
+{
+
 }
