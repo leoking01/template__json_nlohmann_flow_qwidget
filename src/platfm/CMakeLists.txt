@@ -64,13 +64,13 @@ message( "  find   qt5   finish.\n\n")
 
 #----------------------------------------header soruces -------------------------------
 set(HEADERS
-    mainwindow.h    commonfunc.h    mainapp.h
+    ui/mainwindow.h    common/commonfunc.h    tools/mainapp.h
     test.h    )
 
-set(SOURCES
-    main.cpp    mainwindow.cpp    test.h
-    commonfunc.h    mainapp.h    mainwindow.h
-    )
+#set(SOURCES
+#    main.cpp    mainwindow.cpp    test.h
+#    commonfunc.h    mainapp.h    mainwindow.h
+#    )
 
 set(RESOURCES
     pro.qrc    #  tools/ToolBase.cpp
@@ -84,21 +84,22 @@ set(RESOURCES
 # 搜集指定目录 . 和./MyClass 下的源文件，将输出结果列表储存到变量ALL_SOURCE中
 aux_source_directory(. ALL_SOURCE)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src  ALL_SOURCE)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src/gen_pcd  ALL_SOURCE)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src/usages  ALL_SOURCE)
-aux_source_directory(${PROJECT_SOURCE_DIR}/src/tools  ALL_SOURCE)
+aux_source_directory(./  ALL_SOURCE)
+aux_source_directory(./common  ALL_SOURCE)
+aux_source_directory(./tools  ALL_SOURCE)
+aux_source_directory(./ui  ALL_SOURCE)
 
 # 包含进目录 gen_pcd/
-include_directories("${PROJECT_SOURCE_DIR}/gen_pcd")
+#include_directories("${PROJECT_SOURCE_DIR}/gen_pcd")
 include_directories("${PROJECT_BINARY_DIR}")
 #ui_mainwindow.h
 link_directories("${PROJECT_BINARY_DIR}/lib")
 
 include_directories("${PROJECT_SOURCE_DIR}/libHello")
-include_directories("${PROJECT_SOURCE_DIR}/src/gen_pcd")
-include_directories("${PROJECT_SOURCE_DIR}/src/MathFunctions")
-include_directories("${PROJECT_SOURCE_DIR}/src/tools")
-include_directories("${PROJECT_SOURCE_DIR}/src/usages")
+include_directories("./" ./common  ./tools   ./ui  )
+#include_directories("${PROJECT_SOURCE_DIR}/src/MathFunctions")
+#include_directories("${PROJECT_SOURCE_DIR}/src/tools")
+#include_directories("${PROJECT_SOURCE_DIR}/src/usages")
 ## include_directories("${PROJECT_SOURCE_DIR}/src/csv11")
 
 message( “\n\n\n __________________PROJECT_SOURCE_DIR____________________” )
@@ -621,7 +622,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY      ${CMAKE_BINARY_DIR}/../lib   )
 
 
 
-add_executable(${PROJECT_NAME}  MACOSX_BUNDLE    ${SOURCES}   ${ALL_SOURCE} ${FORMS}  ${RESOURCES} )
+add_executable(${PROJECT_NAME}  MACOSX_BUNDLE    ${SOURCES}   ${ALL_SOURCE} ${FORMS}  ${RESOURCES}    ${HEADERS}   )
 
 # ${EXTRA_LIBS}
 if(  1 )
@@ -659,7 +660,7 @@ message( "(6)(lk)__________ project ___________:  ")
 message( "project info(lk):  ")
 message( ${PROJECT_NAME})
 #message( ${HEADERS})
-message( ${SOURCES})
+#message( ${SOURCES})
 #message( ${ALL_SOURCE})
 #message( ${FORMS} )
 
