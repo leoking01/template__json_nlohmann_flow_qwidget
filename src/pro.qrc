@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/data.jpg</file>
+        <file>images/decision.jpg</file>
+        <file>images/document.jpg</file>
+        <file>images/printer.jpeg</file>
+        <file>images/process.jpg</file>
+    </qresource>
+</RCC>
