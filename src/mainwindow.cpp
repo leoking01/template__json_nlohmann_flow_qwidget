@@ -4,18 +4,18 @@
 #pragma execution_character_set("utf-8")
 
 MainWindow::MainWindow(QWidget *parent) :
-        QWidget(parent),
-        ui(new Ui::MainWindow) {
-    std::cout << "    ______________________________________________________________________________" << std::endl;
-    std::cout << "    |                                                                            |" << std::endl;
-    std::cout << "_____                   MainWindow():  init  start                               _____" << std::endl;
+    QWidget(parent),
+    ui(new Ui::MainWindow) {
+    std::cout << "    __________________________________________________________________" << std::endl;
+    std::cout << "    |                                                                 |" << std::endl;
+    std::cout << "_____                   MainWindow():  init  start              _____" << std::endl;
     ui->setupUi(this);
     //icon
     setWindowIcon(QIcon(":/resourceMy/logo.ico")); //为窗口标题添加图片，注意要路径要添加 ": "
     init_toolList();
     m_DirRead = "d:/";
     m_DirSave = "d:/";
-//    mp_flowApp = new MainApp();
+    //    mp_flowApp = new MainApp();
     mp_flowApp = MainApp::getInstance(); // & theMainApp;
     //=============================================== slots ====================================================================
     //  ------------------------------------   控件们 -------------------------------
@@ -32,7 +32,7 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-//----------------------------------------------------事件函数的重载--------------------------------------------------------------------------
+//---------------------事件函数的重载-------------------------------
 void MainWindow::paintEvent(QPaintEvent *event) {
     if (0) {
         QPainter painter(this->ui->label);
@@ -109,9 +109,9 @@ void MainWindow::init_toolList() {
     for (int i = 0; i < nums_of_tools; i++) {
         QListWidgetItem* lst1  ;
         lst1 = new QListWidgetItem(QIcon(":/images/data.jpg")
-                                                    ,   QString::fromStdString(toolNameset[i])
-                                                    ,  this->ui->listWidget);
-//        this->ui->listWidget->addItem(    QString::fromStdString(toolNameset[i]));
+                                   ,   QString::fromStdString(toolNameset[i])
+                                   ,  this->ui->listWidget);
+        //        this->ui->listWidget->addItem(    QString::fromStdString(toolNameset[i]));
         this->ui->listWidget->  insertItem( i, lst1 );
     }
 }
@@ -148,12 +148,12 @@ void MainWindow::tool_selectFile(std::string title, const QString &p_filter, std
     filePath = code->fromUnicode(file_path).data();
     this->printLogToTextBox_q("tool_selectFile: fileNamefull = " + QString::fromStdString(fileNamefull));
     this->printLogToTextBox_q(
-            "tool_selectFile: fileName.toStdString() = " + QString::fromStdString(fileName.toStdString()));
+                "tool_selectFile: fileName.toStdString() = " + QString::fromStdString(fileName.toStdString()));
     this->printLogToTextBox_q(fileName.toStdString().c_str());
     this->printLogToTextBox_q(
-            "tool_selectFile: file_path.toStdString() = " + QString::fromStdString(file_path.toStdString()));
+                "tool_selectFile: file_path.toStdString() = " + QString::fromStdString(file_path.toStdString()));
     this->printLogToTextBox_q(
-            "tool_selectFile: qFileNameFull.toStdString() = " + QString::fromStdString(qFileNameFull.toStdString()));
+                "tool_selectFile: qFileNameFull.toStdString() = " + QString::fromStdString(qFileNameFull.toStdString()));
 }
 
 void MainWindow::tool_selectFile_save_path(std::string title, const QString &p_filter, std::string nameFunc,
@@ -214,7 +214,7 @@ void MainWindow::on_actionopenImagePng_triggered() {
     depthImage = cv::imread(qFileNameFull.toUtf8().data(), cv::IMREAD_UNCHANGED);//读取图片数据
     if (depthImage.cols <= 0 || !depthImage.data) {
         this->printLogToTextBox_q(
-                QString::fromUtf8("selectFile_rangeImage: read iamge failure .  .."));
+                    QString::fromUtf8("selectFile_rangeImage: read iamge failure .  .."));
         return;
     } else {
         m_cv_img = depthImage;
@@ -290,20 +290,20 @@ void MainWindow::on_actionsaveImageXml_triggered() {
     if (!this->m_cv_img.data)
         return;
     if (post.compare("jpe") >= 0 ||
-        post.compare("jpg") >= 0 ||
-        post.compare("jpeg") >= 0 ||
-        post.compare("tiff") >= 0 ||
-        post.compare("tif") >= 0 ||
-        post.compare("png") >= 0 ||
-        post.compare("pbm") >= 0 ||
-        post.compare("pgm") >= 0 ||
-        post.compare("ppm") >= 0 ||
-        post.compare("bmp") >= 0 ||
-        post.compare("dib") >= 0 ||
-        post.compare("EXR") >= 0 ||
-        post.compare("jp2") >= 0 ||
-        post.compare("SR") >= 0 ||
-        post.compare("RAS") >= 0
+            post.compare("jpg") >= 0 ||
+            post.compare("jpeg") >= 0 ||
+            post.compare("tiff") >= 0 ||
+            post.compare("tif") >= 0 ||
+            post.compare("png") >= 0 ||
+            post.compare("pbm") >= 0 ||
+            post.compare("pgm") >= 0 ||
+            post.compare("ppm") >= 0 ||
+            post.compare("bmp") >= 0 ||
+            post.compare("dib") >= 0 ||
+            post.compare("EXR") >= 0 ||
+            post.compare("jp2") >= 0 ||
+            post.compare("SR") >= 0 ||
+            post.compare("RAS") >= 0
             ) {
         cv::imwrite(filePathFull, this->m_cv_img);
     } else if (post.compare("csv") >= 0 || post.compare("txt") >= 0) {
@@ -337,7 +337,7 @@ void MainWindow::on_actionsaveImageXml_triggered() {
             for (int i = 0; i < this->m_cv_img.rows; i++) {
                 for (int j = 0; j < this->m_cv_img.cols; j++) {
                     of << this->m_cv_img.at<cv::Vec3b>(i, j)[0] << this->m_cv_img.at<cv::Vec3b>(i, j)[1]
-                       << this->m_cv_img.at<cv::Vec3b>(i, j)[2];
+                            << this->m_cv_img.at<cv::Vec3b>(i, j)[2];
                 }
             }
             of.close();
@@ -363,7 +363,7 @@ void MainWindow::on_actionsaveImageXml_triggered() {
     cv::Mat depthImage = cv::imread(filePathFull, cv::IMREAD_UNCHANGED);//读取图片数据
     if (depthImage.cols <= 0 || !depthImage.data) {
         this->printLogToTextBox_q(
-                QString::fromUtf8("selectFile_rangeImage: read iamge failure .   .."));
+                    QString::fromUtf8("selectFile_rangeImage: read iamge failure .   .."));
         return;
     } else {
         m_cv_img = depthImage;
@@ -444,19 +444,19 @@ void MainWindow::slot_popEditToolItem() {
     std::cout << "id_tool = " << id_tool << std::endl;
 
     switch (id_tool) {
-        case 2: {
-            //        UISourceFilePcd *dt = new UISourceFilePcd(this, this->mp_flowApp, actualName);//QDialog
-            //        dt->setWindowTitle(QString::fromStdString(actualName));
-            //        dt->setAttribute(Qt::WA_DeleteOnClose);
-            //        dt->setWindowModality(Qt::NonModal);
-            //        //        dt->mp_flowData = this->mp_flowApp;
-            //        dt->show();
-            break;
-            default:
-                this->printLogToTextBox_q(" no ui provided just now.  ");
+    case 2: {
+        //        UISourceFilePcd *dt = new UISourceFilePcd(this, this->mp_flowApp, actualName);//QDialog
+        //        dt->setWindowTitle(QString::fromStdString(actualName));
+        //        dt->setAttribute(Qt::WA_DeleteOnClose);
+        //        dt->setWindowModality(Qt::NonModal);
+        //        //        dt->mp_flowData = this->mp_flowApp;
+        //        dt->show();
+        break;
+    default:
+            this->printLogToTextBox_q(" no ui provided just now.  ");
             break;
         }
-            return;
+        return;
     }
 }
 
@@ -475,7 +475,7 @@ void MainWindow::addToolProc_from_ui() {
         return;
     } else {
         printLogToTextBox_q((QString("you have selected tool id: 已经选中工具: id: ") + QString::number(id) +
-                             " : " + curIt));
+        " : " + curIt));
     }
 #if 0
     //这句话 用 rapidjson写到文件中去。
@@ -487,35 +487,35 @@ void MainWindow::addToolProc_from_ui() {
     std::string pcdFileNameCur = qPcdFileNameCur.toStdString();
     printLogToTextBox("当前线框的pcdfile ： " + pcdFileNameCur);
 #endif
-//    std::string str_insert;
-//    str_insert = std::to_string(nums ) +"," +
-//            getDatetimeStr_forID() + "," +
-//            toolItemName;
-//    this->printLogToTextBox_q(  "str_insert =  "+ QString::fromStdString( str_insert) );
+    //    std::string str_insert;
+    //    str_insert = std::to_string(nums ) +"," +
+    //            getDatetimeStr_forID() + "," +
+    //            toolItemName;
+    //    this->printLogToTextBox_q(  "str_insert =  "+ QString::fromStdString( str_insert) );
     // add  to  app data
     //    std::map<std::string, std::string> tooldAta;
-//    ToolBase *absTool = new ToolSource();//= gen_tool_by_actualName(str_insert);
-//    if (!absTool) {
-//        this->printLogToTextBox_q("can,t generate tool instance . please check. null tool.  return ; ");
-//        return;
-//    }
+    //    ToolBase *absTool = new ToolSource();//= gen_tool_by_actualName(str_insert);
+    //    if (!absTool) {
+    //        this->printLogToTextBox_q("can,t generate tool instance . please check. null tool.  return ; ");
+    //        return;
+    //    }
     //   ToolFactory  *fac = new ToolFactory ();
     //   //std::string  soleName ;
     //   fac->order = nums;
     //fac->ToolName = toolItemName ;
     //fac->str_time = timeIdStr ;
     //   ToolBase *absTool  = fac->generate_by_toolName();// toolItemName,nums, timeIdStr,  soleName  ) ;
-    //----------------------添加到流程-------------------------------------------------------
+    //----- ------添加到流程---- ----------
     std::string soleName;
     bool res_insert = this->mp_flowApp->addToolItem_from_ui(nums,
                                                             toolItemName, timeIdStr, soleName);
     if (res_insert) {
         //添加到流程表
         if( 0 )
-        this->ui->listWidget_2->addItem(QString::fromStdString(soleName));
+            this->ui->listWidget_2->addItem(QString::fromStdString(soleName));
 
         QListWidgetItem* lst5 = new QListWidgetItem(QIcon(":/images/printer.jpeg"), QString::fromStdString(soleName),   this->ui->listWidget_2);
-          this->ui->listWidget_2->insertItem(1, lst5);
+        this->ui->listWidget_2->insertItem(1, lst5);
     }
     //  this->mp_flowApp->print_info();
     //   delete  fac;
@@ -551,13 +551,13 @@ void MainWindow::on_actionloadData_triggered() {
     for (nlohmann::json::iterator it = this->m_json.begin(); it != this->m_json.end(); ++it) {
         std::cout << "*it = " << *it << std::endl;//'\n';
         if( 0 )
-        this->ui->listWidget_2->addItem(
-                QString::fromStdString((*it)["sole_name"]));
+            this->ui->listWidget_2->addItem(
+                    QString::fromStdString((*it)["sole_name"]));
 
         QListWidgetItem* lst5 = new QListWidgetItem(QIcon(":/images/printer.jpeg")
                                                     , QString::fromStdString((*it)["sole_name"])
-                                                    ,   this->ui->listWidget_2);
-          this->ui->listWidget_2->insertItem(1, lst5);
+                ,   this->ui->listWidget_2);
+        this->ui->listWidget_2->insertItem(1, lst5);
     }
 }
 
@@ -566,10 +566,10 @@ void MainWindow::on_actionSaveData_triggered() {
     //    save_json( m_json  ,m_jsonfile ) ;
     this->m_json = {};
     nlohmann::json *js = new nlohmann::json();
-//    this->mp_flowApp->to_json( js  );return ;
+    //    this->mp_flowApp->to_json( js  );return ;
     this->mp_flowApp->to_json(this->m_json);//return ;
     std::cout << "this->m_json  = " << this->m_json << std::endl;
-//    return ;
+    //    return ;
 #if 1
     if (this->m_json.size() < 0) {
         printLogToTextBox_q("data is null. ");
@@ -578,18 +578,20 @@ void MainWindow::on_actionSaveData_triggered() {
     save_json(this->m_json, savefile);
     printLogToTextBox_q("save to savefile : " + QString::fromStdString(savefile));
     return;
-//    // write prettified JSON to another file
-//    std::ofstream o(savefile);
-//    o << std::setw(4) << this->m_json << std::endl;
+    //    // write prettified JSON to another file
+    //    std::ofstream o(savefile);
+    //    o << std::setw(4) << this->m_json << std::endl;
 #endif
 }
 //-------------------------------------------------------------------------
 void MainWindow::on_actionaddTool_triggered() {
     addToolProc_from_ui();
 }
+
+//add tool
 void MainWindow::on_pushButton_addTool_clicked()
 {
- addToolProc_from_ui();
+    addToolProc_from_ui();
 }
 
 void MainWindow::on_pushButton_OpenImageMat_clicked()
@@ -605,10 +607,10 @@ void MainWindow::on_pushButton_saveImageXml_clicked()
 
 void MainWindow::on_pushButton_loadData_clicked()
 {
-on_actionloadData_triggered();
+    on_actionloadData_triggered();
 }
 
 void MainWindow::on_pushButton_SaveData_clicked()
 {
-on_actionSaveData_triggered() ;
+    on_actionSaveData_triggered() ;
 }

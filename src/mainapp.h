@@ -72,16 +72,16 @@ public:
         ToolSource p = *this;
         //        ,ToolSource  & p
         jt = nlohmann::json{
-                {"actualName", p.actualName},
-                {"className",  p.className},
-                {"toolName",   p.toolName},
-                {"sole_name",  p.sole_name},
-                {"order",      p.order},
-                {"id",         p.id},
+        {"actualName", p.actualName},
+        {"className",  p.className},
+        {"toolName",   p.toolName},
+        {"sole_name",  p.sole_name},
+        {"order",      p.order},
+        {"id",         p.id},
 
-                {"filePath",   p.filePath},
-                {"type",       p.type}
-        };
+        {"filePath",   p.filePath},
+        {"type",       p.type}
+    };
         std::cout << "jt   = " << jt << std::endl;
         std::cout << "ToolSource exe to_json()  finish." << std::endl;
         //        jt = *pj ;
@@ -94,16 +94,16 @@ public:
         //        ,ToolSource  & p
         // pjt->at( )
         nlohmann::json *pj = new nlohmann::json{
-                {"actualName", p.actualName},
-                {"className",  p.className},
-                {"toolName",   p.toolName},
-                {"sole_name",  p.sole_name},
-                {"order",      p.order},
-                {"id",         p.id},
+        {"actualName", p.actualName},
+        {"className",  p.className},
+        {"toolName",   p.toolName},
+        {"sole_name",  p.sole_name},
+        {"order",      p.order},
+        {"id",         p.id},
 
-                {"filePath",   p.filePath},
-                {"type",       p.type}
-        };
+        {"filePath",   p.filePath},
+        {"type",       p.type}
+    };
         pjt = pj;
         std::cout << " * pjt   = " << *pjt << std::endl;
         std::cout << "ToolSource exe to_json()  finish." << std::endl;
@@ -150,17 +150,17 @@ public:
         std::cout << "ToolSaveFile exe to_json()." << std::endl;
         ToolSaveFile p = *this;
         j = nlohmann::json{
-                {"actualName",   p.actualName},
-                {"className",    p.className},
-                {"toolName",     p.toolName},
-                {"sole_name",    p.sole_name},
+        {"actualName",   p.actualName},
+        {"className",    p.className},
+        {"toolName",     p.toolName},
+        {"sole_name",    p.sole_name},
 
-                {"order",        p.order},
-                {"id",           p.id},
+        {"order",        p.order},
+        {"id",           p.id},
 
-                {"saveFilePath", p.saveFilePath}
+        {"saveFilePath", p.saveFilePath}
                 //        {"type", p.type}
-        };
+    };
 
     }
 
@@ -230,23 +230,23 @@ public:
         std::cout << "ToolBlur exe to_json()." << std::endl;
         ToolBlur p = *this;
         j = nlohmann::json{
-                {"actualName", p.actualName},
-                {"className",  p.className},
-                {"toolName",   p.toolName},
-                {"sole_name",  p.sole_name},
+        {"actualName", p.actualName},
+        {"className",  p.className},
+        {"toolName",   p.toolName},
+        {"sole_name",  p.sole_name},
 
-                {"order",      p.order},
-                {"id",         p.id},
+        {"order",      p.order},
+        {"id",         p.id},
 
-                {"m_data",     p.m_data},
-                {"m_data_mat", p.m_data_mat},
+        {"m_data",     p.m_data},
+        {"m_data_mat", p.m_data_mat},
                 //                   {"m_pt", p.m_pt},
-                {"dataA",      p.dataA},
-                {"blur_size",  p.blur_size}
+        {"dataA",      p.dataA},
+        {"blur_size",  p.blur_size}
                 //                 {"m_img_input", p.m_img_input}
                 //  {"saveFilePath", p.saveFilePath}
                 //        {"type", p.type}
-        };
+    };
     }
 
     void from_json(const nlohmann::json &j) {
@@ -395,12 +395,12 @@ public:
     }
 
 
-    //=========================================================================================
+    //==============================================
 
     std::string make_soleName() {
         return std::to_string(order) + "," +
-               str_time + "," +
-               className + ",aaa9";// +"," +
+                str_time + "," +
+                className + ",aaa9";// +"," +
         // ToolName;
     }
 
@@ -449,7 +449,7 @@ public:
             (pt)->actualName = this->soleName;
         } else {
             std::cout << "gennerate  tool failure. " << std::endl;
-//            return  NULL;
+            //            return  NULL;
         }
 
         if (!pt) {
@@ -462,11 +462,11 @@ public:
 
 
     //ToolBase* generate(
-//    std::string  soleNameOrToolName,
-//    int  order,
-//    std::string  str_time,
-//    std::string   ToolName
-//    )
+    //    std::string  soleNameOrToolName,
+    //    int  order,
+    //    std::string  str_time,
+    //    std::string   ToolName
+    //    )
     //{
     //	ToolBase* pt = NULL;
     //	if (soleNameOrToolName.compare(toolNameset[0]) >= 0)
@@ -574,7 +574,7 @@ private:
 
 class MainApp {
 public:
-//    MainApp();
+    //    MainApp();
 private:
     MainApp();
 
@@ -589,7 +589,7 @@ private:
 public:
     bool addToolItem_from_ui(int order, std::string tool_name,
                              std::string str_time, std::string &soleName
-    ) {
+                             ) {
         //        absTool->actualName = std::to_string(order );
         //        absTool->order = order  ;
         //        absTool->id = order  ;
