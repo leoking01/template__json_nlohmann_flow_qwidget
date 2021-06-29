@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(SkdVision   VERSION 0.1.0 LANGUAGES CXX)
+project(WMSVision   VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -189,7 +189,7 @@ endif()
 
 
 
-add_library(SkdVision   SHARED
+add_library(WMSVision   SHARED
     #        main.cpp
     #    ${TS_FILES}
 #    skd_vision_basic.c
@@ -198,14 +198,14 @@ add_library(SkdVision   SHARED
     )
 
 
-target_link_libraries(  SkdVision
+target_link_libraries(  WMSVision
     #  PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
     ${LIBS_RELATED}
     )
 
 #qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
-target_compile_definitions(SkdVision PRIVATE SKDVISION_LIBRARY)
+target_compile_definitions(WMSVision PRIVATE SKDVISION_LIBRARY)
 
 set(LIBRARY_OUTPUT_PATH   ${CMAKE_BINARY_DIR}/../bin   )
 set(EXECUTABLE_OUTPUT_PATH   ${CMAKE_BINARY_DIR}/../bin   )
