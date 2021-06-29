@@ -22,7 +22,7 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "SKDVISION_global.h"
+#include "WMSVISION_global.h"
 
 #ifdef   USING_HALCON_DEFINED_LK
 #include "HalconCpp.h"
@@ -30,7 +30,7 @@ using namespace HalconCpp;
 #endif
 
 
-class  SKDVISION_EXPORT AlgorithmBaseNaitive
+class  WMSVISION_EXPORT AlgorithmBaseNaitive
 {
 public:
     std::string class_name ;

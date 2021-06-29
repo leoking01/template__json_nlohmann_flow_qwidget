@@ -3,7 +3,7 @@
 
 #include "algorithmbaseNaitive.h"   // AlgorithmBaseNaitive
 
-class SKDVISION_EXPORT  ImgCvtColor : public AlgorithmBaseNaitive
+class WMSVISION_EXPORT  ImgCvtColor : public AlgorithmBaseNaitive
 {
 public:
     ImgCvtColor(cv::Mat src,  cv::ColorConversionCodes mode )  ;

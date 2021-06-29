@@ -1,7 +1,7 @@
 cmake_policy(VERSION 3.9)
 cmake_minimum_required(VERSION 3.9)
 
-project( light_json_nlohmann_qt__flow VERSION 1.202006261423 )
+project( light_json_nlohmann_qt__flow VERSION 1.202006261423   LANGUAGES CXX )
 #<major>[.<minor>[.<patch>[.<tweak>
 
 if(1)

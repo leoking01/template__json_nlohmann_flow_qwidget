@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(WMSVision   VERSION 0.1.0 LANGUAGES CXX)
+project(WMSVision   VERSION 0.1.0
+    #    LANGUAGES CXX
+    )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -11,18 +13,6 @@ set(CMAKE_AUTORCC ON)
 #set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
-# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
-# They need to be set before the find_package(Qt5 ...) call.
-
-#if(ANDROID)
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
-#        set(ANDROID_EXTRA_LIBS
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so
-#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
-#    endif()
-#endif()
 if(0)
     find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
@@ -67,13 +57,10 @@ elseif(MSVC)
     link_directories( "/home/alex/halcon-19.11.0.0-linux/lib/x64-linux" )
 endif()
 
-
-
 if(0)
     find_package( nlohmann_json REQUIRED PATHS "../deps/Install_nlohman_json/lib/cmake/nlohmann_json")
     include_directories( ../deps/Install_nlohman_json/lib/cmake/nlohmann_json )
     include_directories( ../deps/fast-cpp-csv-parser )
-
 
     find_package( tinyxml2 REQUIRED PATHS "../deps/InstallTinyXml2/lib/cmake/tinyxml2" )
     include_directories( ../deps/InstallTinyXml2/include )
@@ -81,9 +68,9 @@ if(0)
 
     include_directories( ../deps/fast-cpp-csv-parser )
 
-    find_package(  glog  REQUIRED   PATHS    "../deps/InstallTinyXml2/lib/cmake/glog")
+    find_package( glog REQUIRED PATHS "../deps/InstallTinyXml2/lib/cmake/glog")
     include_directories( ../deps/InstallGlog/include )
-    link_directories(  ../deps/InstallGlog/lib )
+    link_directories( ../deps/InstallGlog/lib )
 endif()
 
 
@@ -94,7 +81,6 @@ if(OPENMP_FOUND)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
-
 
 #include_directories(     "/home/alex/halcon-19.11.0.0-linux/include/halconcpp"
 #    "/home/alex/halcon-19.11.0.0-linux/include"  )
@@ -129,10 +115,10 @@ include_directories(
     )
 
 set(HEADERS
-    ./BasicDef/SKDVISION_global.h
-    ./BasicDef/skd_vision_basic.h
-    ./BasicDef/skd_vision_basic_cpp.h
-
+    ./BasicDef/WMSVISION_global.h
+    ./BasicDef/wms_vision_basic.h
+    ./BasicDef/wms_vision_basic_cpp.h
+    ./BasicDef/vision_basic.h
 
     ./algorithmsNaitive/algorithmbaseNaitive.h
 
@@ -159,8 +145,7 @@ set(HEADERS
     ./algorithmsNaitive/PreProc/oneImgProc/imgcvtcolor.h
     ./algorithmsNaitive/PreProc/oneImgProc/threashold.h
     ./algorithmsNaitive/PreProc/oneImgProc/thresholdotsu.h
-
-   #    ./algorithmsNaitive/fitterline.h
+    #    ./algorithmsNaitive/fitterline.h
     )
 #set(FORMS   ./UI/widget.ui  )
 
@@ -192,8 +177,8 @@ endif()
 add_library(WMSVision   SHARED
     #        main.cpp
     #    ${TS_FILES}
-#    skd_vision_basic.c
-#    skd_vision_basic_cpp.cpp
+    #    wms_vision_basic.c
+    #    wms_vision_basic_cpp.cpp
     ${sources_lst_my}  ${HEADERS}  ${FORMS}
     )
 
@@ -205,7 +190,7 @@ target_link_libraries(  WMSVision
 
 #qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
-target_compile_definitions(WMSVision PRIVATE SKDVISION_LIBRARY)
+target_compile_definitions(WMSVision PRIVATE WMSVISION_LIBRARY)
 
 set(LIBRARY_OUTPUT_PATH   ${CMAKE_BINARY_DIR}/../bin   )
 set(EXECUTABLE_OUTPUT_PATH   ${CMAKE_BINARY_DIR}/../bin   )
@@ -293,7 +278,7 @@ install(
 
 install(
     DIRECTORY
-#    include/${PROJECT_NAME_LOWERCASE}
+    #    include/${PROJECT_NAME_LOWERCASE}
     interfaceA/${PROJECT_NAME_LOWERCASE}
     DESTINATION
     include

@@ -4,7 +4,7 @@
 #include "algorithmbaseNaitive.h"   // AlgorithmBaseNaitive
 
 // __declspec(dllexport)
-class SKDVISION_EXPORT  FitterLine : public AlgorithmBaseNaitive
+class WMSVISION_EXPORT  FitterLine : public AlgorithmBaseNaitive
 {
 public:
     FitterLine();

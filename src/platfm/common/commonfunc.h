@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-// using namespace std;
+
 
 #include <chrono>
 //using namespace std;
@@ -24,10 +24,7 @@
 #include <iomanip>
 #include <nlohmann/json.hpp>
 
-
 #include "opencv2/opencv.hpp"
-
-
 
 // for convenience
 //using json = nlohmann::json;
@@ -39,7 +36,6 @@ class CommonFunc {
 public:
     CommonFunc();
 };
-
 
 std::string getDatetimeStr();
 

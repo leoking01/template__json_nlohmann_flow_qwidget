@@ -1,6 +1,6 @@
  #pragma  once
 
-#include "SKDVISION_global.h"
+#include "WMSVISION_global.h"
 
 #include <iostream>
 #include <string>
@@ -15,14 +15,14 @@
  *         0, grey
  *         1, color
  **/
-SKDVISION_EXPORT
+WMSVISION_EXPORT
 void  api_load_img(std::string imgFile, int mode,  cv::Mat & img );
 
 #else
-#include "skd_vision_basic_cpp.h"
+#include "wms_vision_basic_cpp.h"
 
-SKDVISION_EXPORT
-void  api_load_img(std::string imgFile, skd_vision:: skd_Image & img );
+WMSVISION_EXPORT
+void  api_load_img(std::string imgFile, wms_vision:: wms_Image & img );
 
 #endif
 

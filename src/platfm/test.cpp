@@ -66,12 +66,10 @@ struct person {
 };
 }
 
-void  some()
-{
+void  some(){
     ns::person p = {"Ned Flanders", "744 Evergreen Terrace", 60};
-
     // convert to JSON: copy each value into the JSON object
-   nlohmann:: json j;
+    nlohmann:: json j;
     j["name"] = p.name;
     j["address"] = p.address;
     j["age"] = p.age;
@@ -85,25 +83,11 @@ void  some()
                     j["age"].get<int>()
         };
     }
-
     {
         // create a person
         ns::person p {"Ned Flanders", "744 Evergreen Terrace", 60};
-        // conversion: person -> json
-        ////        json j = p;
-        //         json j  =  p;
-        ////         to_json<  person >(  j,  p  );
-        //        std::cout << j << std::endl;
-        //        // {"address":"744 Evergreen Terrace","age":60,"name":"Ned Flanders"}
-        //        // conversion: json -> person
-        //         json j  ;
-        //        auto p2 = j.get<ns::person>();
-        //        // that's it
-        //        assert(p == p2);
-       nlohmann::  json j ;
-
+        nlohmann::  json j ;
         nlohmann::adl_serializer< std::string   > ss;
-        //  nlohmann::adl_serializer< std::string,std::string> :: to_json <nlohmann::json, ns::person > (p );
     }
 }
 
@@ -146,17 +130,6 @@ nlohmann::adl_serializer< std::string   >   serial   ;
 nlohmann::adl_serializer< std::string   > ss ;
 
 
-//template <typename T>
-//struct adl_serializer {
-//    static void to_json(json& j, const T& value) {
-//        // calls the "to_json" method in T's namespace
-//    }
-
-//    static void from_json(const json& j, T& value) {
-//        // same thing, but with the "from_json" method
-//    }
-//};
-
 //-----------------------------------------------------------------------------
 
 #include <iostream>
@@ -164,12 +137,9 @@ nlohmann::adl_serializer< std::string   > ss ;
 #include <iomanip>
 #include <nlohmann/json.hpp>
 
-// for convenience
-
-
 int  main__00002()
 {
-   nlohmann:: json j2 = {
+    nlohmann:: json j2 = {
         {"pi", 3.141},
         {"happy", true},
         {"name", "Niels"},
@@ -186,7 +156,7 @@ int  main__00002()
 
     //---------------------------------------------------------------------
     // a way to express the empty array []
-  nlohmann::  json empty_array_explicit = json::array();
+    nlohmann::  json empty_array_explicit = json::array();
 
     // ways to express the empty object {}
     json empty_object_implicit = json({});
@@ -215,11 +185,6 @@ int  main__00002()
     // serialization with pretty printing
     // pass in the amount of spaces to indent
     std::cout << j.dump(4) << std::endl;
-    // {
-    //     "happy": true,
-    //     "pi": 3.141
-    // }
-    //     return   0;
 
     //---------------------------------------------------------------------
     if( 1 )
